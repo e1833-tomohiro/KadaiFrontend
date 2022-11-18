@@ -14,26 +14,34 @@
       </b-nav-item>
     </b-nav>
     <LineChart :chartData="chartData" :chartOptions="chartOptions"></LineChart>
+    <br/>
+    <ProPortion></ProPortion>
+    <br/>
+    <Record></Record>
   </div>
 </template>
 <script>
 import LineChart from './LineChart.vue'
 import Detail from './static/Detail.vue'
+import ProPortion from './ProPortion.vue'
+import Record from './Recorde.vue'
 export default{
   components: {
     LineChart,
-    Detail
+    Detail,
+    ProPortion,
+    Record
   },
   data: function(){
     return{
       chartData: {
-        labels: Object.values(this.$store.state.suppliesDataSets[this.$route.params.warehouseId][1].labels).slice(0, 14).reverse(),
+        labels: Object.values(this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][1].labels).slice(0, 10).reverse(),
         datasets: [
           {
             label: '飲料水データ',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgba(54, 162, 235, 1)',
-            data: this.$store.state.suppliesDataSets[this.$route.params.warehouseId][1].data.slice(0, 14).reverse()
+            data: this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][1].data.slice(0, 10).reverse()
           }
         ]
       },
@@ -42,7 +50,7 @@ export default{
         maintainAspectRatio: false
       }
     }
-  }
+  },
 }
 
 </script>

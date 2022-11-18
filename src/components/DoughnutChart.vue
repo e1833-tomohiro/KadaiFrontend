@@ -23,33 +23,15 @@ ChartJS.register(
   Legend,
   ArcElement,
   CategoryScale,
-  {
-    id: "doughnutChart",
-    afterDraw: function(chart) {
-      var width = chart.width,
-          height = chart.height,
-          ctx = chart.ctx;
-      var val = chart.data;
-      console.log(chart);
-      ctx.restore();
-      var fontSize = (height / 114).toFixed(2);
-      ctx.font = fontSize + "em sans-serif";
-      ctx.textBaseline = "middle";
-
-      var text = val+"%",
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 2;
-
-      ctx.fillText(text, textX, textY);
-      ctx.save();
-    }
-  }
 )
 
-export default defineComponent({
+var doughnuchart = defineComponent({
   name: 'DoughnutChart',
   components: {
     Doughnut
+  },
+  data: function(){
+
   },
   props: {
     chartId: {
@@ -75,37 +57,13 @@ export default defineComponent({
     chartOptions: {
       defualt: null,
       type: Object
-    }
+    },
+    plugins: {
+      default: () =>[]
+    },
     
   },
   setup(props) {
-    /*
-    const chartData = {
-      labels: [
-        
-      ],
-      datasets: [
-        {
-          data: [80, 100-80],
-          backgroundColor: [
-            "#FF6384",
-            "#AAAAAA"
-          ],
-          hoverBackgroundColor: [
-            "#FF6384",
-            "#AAAAAA"
-          ],
-          hoverBorderColor: [
-            "#FF6384",
-            "#ffffff"
-          ]
-        }
-      ]
-    };
-    const chartOptions = {
-      responsive: true,
-      maintainAspectRatio: false
-    };*/
     return () =>
       h(Doughnut, {
         chartData: props.chartData,
@@ -118,5 +76,7 @@ export default defineComponent({
       })
   }
 })
+
+export default doughnuchart
 
 </script>

@@ -5,7 +5,8 @@ const store = createStore(Store, {
     state () {
       return {
           suppliesDataSets: [
-              [
+              /*
+                [
                   { //food
                       "labels": [],
                       "data": [],
@@ -19,7 +20,7 @@ const store = createStore(Store, {
                     "data": [],
                   }
               ]
-              
+              */
           ]
       }
     },
@@ -32,7 +33,7 @@ const store = createStore(Store, {
             state.suppliesDataSets.push(suppliesDataSet);
         },
         pop(state){
-            delete state.suppliesDataSets.pop()
+            state.suppliesDataSets.pop()
         }
     },
     plugins: [createPersistedState(

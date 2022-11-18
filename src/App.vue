@@ -3,10 +3,10 @@
     <Header></Header>
     <b-container fluid>
       <b-row>
-        <b-col xl="2" lg="3" sm="12" class="sideBarStyle">
+        <b-col xl="2" lg="2" sm="12" class="sideBarStyle">
           <SideBar></SideBar>
         </b-col>
-        <b-col xl="10" lg="9" sm="12">
+        <b-col xl="10" lg="10" sm="12">
           <br/>
           <Content></Content>
         </b-col>
@@ -39,6 +39,7 @@ export default {
     var api = this.axios.create();
     api.get('/api/getSuppliesDataSets')
       .then(response=>{
+        //console.log(response.data.dataSet)
         this.initDataSets(response.data.dataSet)
       }).catch(response=>{
         console.log(response)
@@ -50,7 +51,7 @@ export default {
       for(var i = 0; i<8; i++){
         this.$store.commit('init',dataSets[i]);
       }
-      this.$store.commit('pop')
+      //this.$store.commit('pop')
     }
   }
 }
@@ -66,7 +67,5 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
 }
-.sideBarStyle{
-  border: 0.1px solid #f0f0f0;
-}
+
 </style>
