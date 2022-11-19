@@ -1,7 +1,7 @@
 
 import {createRouter, createWebHistory} from 'vue-router'
-//import Chart from '@/components/Chart.vue'
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import Index from '@/components/Index.vue'
 import Food from '@/components/Food.vue'
 import Drink from '@/components/Drink.vue'
 import Medicine from '@/components/Medicine.vue'
@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: HelloWorld
+    component: Index
   },
   {
     path: '/:warehouseId/food',

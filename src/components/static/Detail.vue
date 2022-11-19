@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{warehouseNames[this.$route.params.warehouseId-1]}}公園 備蓄倉庫</h1>
+        <h4>{{warehouseNames[this.$route.params.warehouseId-1]}}公園 備蓄倉庫</h4>
     </div>
 </template>
 <script>

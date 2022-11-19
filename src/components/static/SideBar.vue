@@ -1,6 +1,19 @@
 <template>
   <div>
     <br/>
+    <router-link to="/">
+        <b-card
+          title="一覧"
+          tag="article"
+          style="max-width: 12rem;"
+          class="mb-2"
+          v-fallbackImage
+          title-tag="h6"
+          :text-variant="this.$route.path=='/'?'primary':''"
+          :bg-variant="this.$route.path=='/'?'light':''"
+        >
+        </b-card>
+      </router-link>
     <router-link :to="{ name: 'food', params: { warehouseId: 1 }}">
         <b-card
           title="朝霧公園"

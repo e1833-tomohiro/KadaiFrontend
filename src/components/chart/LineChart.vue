@@ -1,50 +1,54 @@
 <template>
   <div>
-    <Doughnut :chart-data="chartData" :chart-option="chartOptions"></Doughnut>
+    <Line></Line>
   </div>
 </template>
 
 <script>
+// DataPage.vue
 import { defineComponent, h, } from 'vue'
 
-import { Doughnut } from 'vue-chartjs'
+import { Line } from 'vue-chartjs'
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  ArcElement,
+  LineElement,
+  LinearScale,
+  PointElement,
   CategoryScale,
+  Filler
 } from 'chart.js'
 
 ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  ArcElement,
+  LineElement,
+  LinearScale,
+  PointElement,
   CategoryScale,
+  Filler
 )
 
-var doughnuchart = defineComponent({
-  name: 'DoughnutChart',
+export default defineComponent({
+  name: 'LineChart',
   components: {
-    Doughnut
-  },
-  data: function(){
-
+    Line
   },
   props: {
     chartId: {
       type: String,
-      default: 'doughnut-chart'
+      default: 'line-chart'
     },
     width: {
       type: Number,
-      default: 300
+      default: 400
     },
     height: {
       type: Number,
-      default: 300
+      default: 400
     },
     cssClasses: {
       default: '',
@@ -52,31 +56,40 @@ var doughnuchart = defineComponent({
     },
     chartData: {
       default: null,
-      type: Object,
-    },
-    chartOptions: {
-      defualt: null,
       type: Object
     },
-    plugins: {
-      default: () =>[]
-    },
-    
+    chartOptions: {
+      default: null,
+      type: Object,
+    }
   },
   setup(props) {
+    //var { chartData, chartOptions } = ref(props);
+    //console.log(chartData, chartOptions);
+    const chartOptions =  {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                suggestedMin: 0,
+            }
+        }
+
+      }
     return () =>
-      h(Doughnut, {
+
+      h(Line, {
         chartData: props.chartData,
-        chartOptions: props.chartOptions,
+        chartOptions: chartOptions,
         chartId: props.chartId,
         width: props.width,
         height: props.height,
         cssClasses: props.cssClasses,
+        styles: props.styles,
         plugins: props.plugins
       })
   }
 })
 
-export default doughnuchart
 
 </script>

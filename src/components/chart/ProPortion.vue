@@ -81,7 +81,8 @@
             },
             chartOptions: {
               responsive: true,
-              maintainAspectRatio: false
+              maintainAspectRatio: false,
+              cutout: 120
             },
             plugins1: [],
             plugins2: [],
@@ -89,9 +90,9 @@
           }
         },
         created: function() {
-          var p1 = Number(this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][0].data[0])/2;
-          var p2 = Number(this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][1].data[0])/2;
-          var p3 = Number(this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][2].data[0])/2;
+          var p1 = Number(this.$store.state.suppliesDataSets.datasets[this.$route.params.warehouseId-1][0][0])/2;
+          var p2 = Number(this.$store.state.suppliesDataSets.datasets[this.$route.params.warehouseId-1][1][0])/2;
+          var p3 = Number(this.$store.state.suppliesDataSets.datasets[this.$route.params.warehouseId-1][2][0])/2;
           this.chartData1.datasets[0].data.push(p1);
           this.chartData1.datasets[0].data.push(100-p1);
           this.chartData2.datasets[0].data.push(p2);
@@ -106,14 +107,13 @@
                       height = chart.height,
                       ctx = chart.ctx;
                   var val = p1;
-                  var fontSize = (height / 114).toFixed(2);
+                  var fontSize = (height / 180).toFixed(2);
                   ctx.font = fontSize + "em sans-serif";
                   ctx.textBaseline = "middle";
           
                   var text = val+"%",
                       textX = Math.round((width - ctx.measureText(text).width) / 2),
                       textY = height / 2;
-          
                   ctx.fillText(text, textX, textY);
                   ctx.save();
               }
@@ -127,7 +127,7 @@
                       height = chart.height,
                       ctx = chart.ctx;
                   var val = p2;
-                  var fontSize = (height / 114).toFixed(2);
+                  var fontSize = (height / 180).toFixed(2);
                   ctx.font = fontSize + "em sans-serif";
                   ctx.textBaseline = "middle";
           
@@ -148,7 +148,7 @@
                       height = chart.height,
                       ctx = chart.ctx;
                   var val = p3;
-                  var fontSize = (height / 114).toFixed(2);
+                  var fontSize = (height / 180).toFixed(2);
                   ctx.font = fontSize + "em sans-serif";
                   ctx.textBaseline = "middle";
           

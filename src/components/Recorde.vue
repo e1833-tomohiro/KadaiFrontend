@@ -31,7 +31,7 @@
     export default{
         data: function(){
             return{
-                labels: this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][0].labels,
+                labels: this.$store.state.suppliesDataSets.labels,
                 sampleDataSets: [],
                 perPage: 7,
                 currentPage: 1,
@@ -44,9 +44,9 @@
             var medicine = 0;
             var dayData = []
             for(var i=0; i<42; i++){
-                food = this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][0].data[i]
-                drink = this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][1].data[i]
-                medicine = this.$store.state.suppliesDataSets[this.$route.params.warehouseId-1][2].data[i]
+                food = this.$store.state.suppliesDataSets.datasets[this.$route.params.warehouseId-1][0][i]
+                drink = this.$store.state.suppliesDataSets.datasets[this.$route.params.warehouseId-1][1][i]
+                medicine = this.$store.state.suppliesDataSets.datasets[this.$route.params.warehouseId-1][2][i]
                 dayData.push(food, drink, medicine);
                 this.sampleDataSets.push(dayData);
                 dayData = []

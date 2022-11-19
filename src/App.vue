@@ -39,21 +39,12 @@ export default {
     var api = this.axios.create();
     api.get('/api/getSuppliesDataSets')
       .then(response=>{
-        //console.log(response.data.dataSet)
-        this.initDataSets(response.data.dataSet)
+        //console.log(response.data.dataSets.labels, response.data.dataSets)
+        this.$store.commit('init',response.data.dataSets);
       }).catch(response=>{
         console.log(response)
       })
   },
-  methods: {
-    initDataSets: function(dataSets){
-      this.$store.reset()
-      for(var i = 0; i<8; i++){
-        this.$store.commit('init',dataSets[i]);
-      }
-      //this.$store.commit('pop')
-    }
-  }
 }
 
 </script>

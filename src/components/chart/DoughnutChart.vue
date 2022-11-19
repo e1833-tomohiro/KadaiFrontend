@@ -1,22 +1,19 @@
 <template>
   <div>
-    <Line :chart-data="chartData" :chart-option="chartOptions"></Line>
+    <Doughnut></Doughnut>
   </div>
 </template>
 
 <script>
-// DataPage.vue
 import { defineComponent, h, } from 'vue'
 
-import { Line } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  LineElement,
-  LinearScale,
-  PointElement,
+  ArcElement,
   CategoryScale,
 } from 'chart.js'
 
@@ -24,29 +21,30 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  LineElement,
-  LinearScale,
-  PointElement,
-  CategoryScale
+  ArcElement,
+  CategoryScale,
 )
 
-export default defineComponent({
-  name: 'LineChart',
+var doughnuchart = defineComponent({
+  name: 'DoughnutChart',
   components: {
-    Line
+    Doughnut
+  },
+  data: function(){
+
   },
   props: {
     chartId: {
       type: String,
-      default: 'line-chart'
+      default: 'doughnut-chart'
     },
     width: {
       type: Number,
-      default: 400
+      default: 300
     },
     height: {
       type: Number,
-      default: 400
+      default: 300
     },
     cssClasses: {
       default: '',
@@ -54,30 +52,31 @@ export default defineComponent({
     },
     chartData: {
       default: null,
-      type: Object
+      type: Object,
     },
     chartOptions: {
-      default: null,
-      type: Object,
-    }
+      defualt: null,
+      type: Object
+    },
+    plugins: {
+      default: () =>[]
+    },
+    
   },
   setup(props) {
-    //var { chartData, chartOptions } = ref(props);
-    //console.log(chartData, chartOptions);
     return () =>
-
-      h(Line, {
+      h(Doughnut, {
         chartData: props.chartData,
         chartOptions: props.chartOptions,
         chartId: props.chartId,
         width: props.width,
         height: props.height,
         cssClasses: props.cssClasses,
-        styles: props.styles,
         plugins: props.plugins
       })
   }
 })
 
+export default doughnuchart
 
 </script>
